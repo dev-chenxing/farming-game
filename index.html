@@ -7,6 +7,7 @@
 		<title>在线种田</title>
 		<meta name="keywords" content="种田,种田游戏,在线种田游戏">
 		<meta name="description" content="种田使人快乐">
+		<link rel="icon" type="image/x-icon" href="/favcion.ico">
 		
 		<!-- Bootstrap -->
 		<script type="text/javascript" src="lib/jquery-1.11.0.min.js"></script>	
@@ -25,24 +26,6 @@
 		
 		<!-- Vue Core JavaScript  -->
 		<script src="lib/vue.js"> </script>
-		
-		<script language="javascript">
-			$(document).ready(function() {
-				var timer = setInterval("setProgress()", 1000);
-			});
-			function toNumber(numberString){
-				return Number(numberString.replace(/,/g, ""))
-			}
-			function setProgress(){
-				var current = $("#progressBar").val();
-				var moneyText = $('#moneyText').text().split(":")[1];
-				var experience = toNumber(moneyText); //当前修为
-				var nextLevelRequiredText = $("#nextLevelRequiredText").text();
-				var nextLevelRequired = toNumber(nextLevelRequiredText); // 下个境界所需修为
-				var progress = Math.round((experience/nextLevelRequired)*100)
-				$("#progressBar").val(progress);
-			}
-		</script>
 	</head>
 
 	<body>
@@ -55,7 +38,7 @@
 							<hr/>
 							<!-- 消息滚动 START -->
 							<div id="marquee">    
-								<marquee direction="up" height="50" scrolldelay="2">
+								<marquee direction="up" height="50" scrollamount="2">
 									<p align="center" style="text-decoration: underline; cursor: pointer; margin: 0">点击查看公告内容</p>
 									<p align="center">提示：如出现意外错误，请刷新后重试</p>
 								</marquee>
@@ -74,12 +57,14 @@
 								<span>敝筐</span>
 								<div class="container">
 									<div class="row row-cols-auto">
-										<template v-for="(item, index) in inventory">
-											<div class="col">
-												<button class="btn" v-on:click="_activate(item)">
-													{{ item.name }} ({{ item.count }})
-												</button>
-											</div>
+										<template v-for="(itemStack, _) in inventory">
+											<template v-if="itemStack.count > 0">
+												<div class="col">
+													<button class="btn" v-on:click="itemStack.object.onActivate">
+														{{ itemStack.object.name }} ({{ item.count }})
+													</button>
+												</div>
+											</template>
 										</template>
 									</div>
 								</div>
@@ -91,11 +76,13 @@
 								<div class="container">
 									<div class="row row-cols-auto">
 										<template v-for="(item, index) in field">
-											<div class="col">
-												<button class="btn" v-on:click="_activate(item)">
-													{{ item.name }}
-												</button>
-											</div>
+											<template v-if="item">
+												<div class="col">
+													<button class="btn" v-on:click="item.onActivate">
+														{{ item.name }}
+													</button>
+												</div>
+											</template>
 										</template>
 									</div>
 								</div>
@@ -111,7 +98,7 @@
 									<input style="width: 70%;" class="border border-1 border-dark" id="data" type="text" v-model="record" >
 									<button class="btn btn-default" v-on:click="_showData">存档</button>
 									<button class="btn btn-default" v-on:click="_loadData">读档</button>
-									<button class="btn btn-default" v-on:click="_newGame">新游戏</button>
+									<button class="btn btn-default" v-on:click="_askIfRestart">新游戏</button>
 								</div>
 							</div>
 							<!-- 存档面板 END -->
@@ -128,9 +115,8 @@
 		<!-- JiaThis Button END -->
 
 		<script src="script/level.js"> </script>
-		<script src="script/stand.js"> </script>
 		<script src="script/skill.js"> </script>
-		<script src="script/item.js"> </script>    
+		<script src="script/items.js"> </script>    
 		<script src="script/nameMaker.js"> </script>
 
 		<script src="script/core-main.js" > </script>
