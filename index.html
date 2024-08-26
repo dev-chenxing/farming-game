@@ -35,8 +35,8 @@
 			}
 			function setProgress(){
 				var current = $("#progressBar").val();
-				var experienceText = $('#experienceText').text().split(":")[1];
-				var experience = toNumber(experienceText); //当前修为
+				var moneyText = $('#moneyText').text().split(":")[1];
+				var experience = toNumber(moneyText); //当前修为
 				var nextLevelRequiredText = $("#nextLevelRequiredText").text();
 				var nextLevelRequired = toNumber(nextLevelRequiredText); // 下个境界所需修为
 				var progress = Math.round((experience/nextLevelRequired)*100)
@@ -46,237 +46,83 @@
 	</head>
 
 	<body>
-		<!-- 主面板 START -->
-		<div id="app" v-bind:style="backCss">
-			<div class="container">
-				<div class="row">
-					<div v-bind:style="centerCss" class="col-sm-12 col-md-10 col-md-offset-1 text-center">            
-						<hr/>
+		<div id="app">
+			<div class="container d-flex justify-content-center">
+				<!-- 主面板 START -->
+				<div class="col-sm-12 col-md-10 text-center">
 						<!-- 面板1 START -->
-						<div class="row">
-							<div style="text-align:left; margin:5px;">    
-								<!-- 消息滚动 START -->
-								<marquee direction="up" height="40" scrollamount="2" scrolldelay="2">
-									<p align="center" style="text-decoration: underline; cursor: pointer;">点击查看公告内容</p>
+						<div class="my-2">
+							<hr/>
+							<!-- 消息滚动 START -->
+							<div id="marquee">    
+								<marquee direction="up" height="50" scrolldelay="2">
+									<p align="center" style="text-decoration: underline; cursor: pointer; margin: 0">点击查看公告内容</p>
 									<p align="center">提示：如出现意外错误，请刷新后重试</p>
-							</marquee>
-								<!-- 消息滚动 END -->
+								</marquee>
 							</div>
-							
-							<h1 id="experienceText">修为: {{ numFilter.txt( point.round().toString() ) }} </h1>
-							<div class="col-md-4 text-left">
-								第{{ worldTimes }}重天 <h2>{{ world[0] }}界</h2>
-							</div>
-							<div class="col-md-4 text-center">
-								<button class="btn btn-lg btn-default" v-bind:style="buttonCss" v-on:click="_addByBody">修炼</button>
-							</div>
-							<div class="col-md-4 text-right">
-								<h3>{{ level.name }} 境界</h3>
-								<p id="nextLevelRequiredText"><progress value="0" max="100" id="progressBar">
-		</progress> {{ numFilter.txt( level.max.toString() ) }}</p>
-								<p>每秒
-								<template v-if="!pointPerSec.lessThan(0)">增加</template>
-								<template v-else>减少</template>
-								{{ numFilter.txt( pointPerSec.abs().times(10).round().toString() ) }} 修为</p>
-							</div> 
+							<hr/>
+							<!-- 消息滚动 END -->
+							<h1 id="timeText">第 {{ _intToChinese(pastLife) }} 日</h1>
+							<h1 id="moneyText">铜钱 {{ _intToChinese(point) }} 文</h1>
 						</div>
 						<!-- 面板1 END -->
 
 						<!-- 面板2 START -->
-						<div class="row"  v-bind:style="tableRowCss">
-						</br>
-						<table v-bind:style="tableCss" id="status"  class="table table-bordered table-condensed">
-								<tbody> 
-									<tr v-bind:style="Tr0css">
-										<td>寿命</td>
-										<td>阵营</td>
-										<td>名望</td>
-										<td>财富</td>
-									</tr>
-									<tr>
-										<td> {{ life.toString() }} / {{ pastLife.toString() }} 秒</td>
-										<td> {{ stand.name }} {{ standPoint.div(100).round().toString() }}% </td>
-										<td> {{ numFilter.txt( renown.toString() ) }} </td>
-										<td> {{ numFilter.txt( money.toString() ) }}金 </td>
-									</tr>
-									
-									<tr v-bind:style="Tr1css">
-										<td colspan="4" class="text-left">归属</td>
-									</tr>
-									<tr>
-										<td ><h4> {{ group.name }} </h4></td>
-										<td colspan="2"> 
-											<template v-if="group.exist">{{ group.object.info }}</template> 
-											<template v-else>
-												<span v-if="groupWait>0">耗费 {{ groupWait }} 秒游历天下，</span>
-												花费 100 名望探访名师
-											</template>
-										</td>
-										<td>
-											<template v-if="group.exist">
-											<button class="btn btn-default" v-on:click="_exitGroup">金盆洗手</button>
-											</template>
-											<template v-else>
-											<button class="btn btn-default" v-on:click="_joinGroup" :disabled="groupWait!=0 || renown.lessThan(100)">拜师学艺</button>
-											</template>		
-										</td>
-									</tr>
-									
-								</tbody>
-							</table>
-							
-							<div id= "divID" style= "display:block">
-							<table v-bind:style="tableCss" id="info" class="table table-bordered table-condensed">
-								<tbody> 
-									<tr v-bind:style="Tr0css">
-										<td>名称</td>
-										<td>能力</td>
-										<td>升级需求</td>
-										<td> </td>
-									</tr>
-									<tr v-bind:style="Tr1css">
-										<td colspan="4" class="text-left">身体</td>
-									</tr>
-									<tr>
-										<td><h4>{{ body.name }}</h4></td>
-										<td>每次修炼增加 {{ numFilter.txt( body.num.toString() ) }} 修为</td>
-										<td><template v-if="!body.top"> {{ numFilter.txt( body.need.toString() ) }} 修为</template></td>
-										<td><button class="btn btn-default" v-on:click="_bodyLvUp" :disabled="point.lessThan( body.need ) || body.top ">升级</button></td>
-									</tr>
-									<tr v-bind:style="Tr2css">
-										<td colspan="4" class="text-left">灵根</td>
-									</tr>
-									<tr>
-										<td><h4>{{ talent.name }}</h4></td>
-										<td>可修炼 {{ talent.num.toString() }} 项功法</td>
-										<td><template v-if="!talent.top">{{ numFilter.txt( talent.need.toString() ) }} 修为</template></td>
-										<td><button class="btn btn-default" v-on:click="_talentLvUp" :disabled="point.lessThan( talent.need ) || talent.top ">升级</button></td>
-									</tr>
-									<tr  v-bind:style="Tr3css" id="skillRow">
-										<td class="text-left">功法：{{ skills.length }}项</td>
-										<td colspan="2" class="text-center"><template v-if="talent.num.greaterThan( skills.length)">门槛需达 {{ numFilter.txt( level.max.div(2).toString() ) }} 修为，消耗修为至{{skills.length+2}}分之一</template></td>
-										<td>
-											<template v-if="talent.num.greaterThan( skills.length)">
-											<button class="btn btn-default" v-on:click="_getNewSkill" :disabled="point.lessThan( level.max.div(2) ) ">学习新功法</button>
-											</template>	
-										</td>
-									</tr>
-									<tr v-for="(skill, id) in skills">
-										<td><h5> {{ skill.name }} - {{ skill.object.degree }} </h5></td> 
-										<td>{{ skill.object.info }}</td> 
-										<td><template v-if="!skill.object.top">{{ numFilter.txt( skill.object.need.toString() ) }} 修为</template></td>
-										<td>
-											<button class="btn btn-default" v-on:click="_skillLvUp(id)" :disabled="point.lessThan( skill.object.need ) || skill.object.top ">升级</button>
-											<button class="btn btn-default" v-on:click="_skillRemove(id)" :disabled="money.lessThan(removeCost)">散功({{ removeCost.toString() }}金)</button>
-										</td>
-									</tr>					
-								</tbody>
-							</table>
-							</div>
-							</br>
-	<input type=button value= "显示身体、灵根、功法" onclick='document.getElementById("divID").style.display="block"'>
-							<input type=button value= "隐藏身体、灵根、功法" onclick='document.getElementById("divID").style.display="none"'>
-							<br/>
-							<br/>
-							
-							<div id= "divID1" style= "display:block">
-							<table v-bind:style="tableCss" id="status"  class="table table-bordered table-condensed">
-								<tbody> 
-									<tr v-bind:style="Tr1css">
-										<td colspan="4" class="text-left">副本</td>
-									</tr>
-									<tr>
-										<td ><h4> {{ group1.name }} </h4></td>
-										<td colspan="2"> 
-											<template >为世人所厌恶，大于500金币，献祭8成金币给古神获取命运博弈。 
-											<span v-if="group1Wait>0"> {{ group1Wait }} 秒后即可献祭。</span></template></td>
-										<td>
-											<template >
-											<button class="btn btn-default" v-on:click="_joinGroup1" :disabled=" money.lessThan(500)">献祭赌博</button>
-
-											</template>						</td>
-									</tr>
-									<tr>
-										<td ><h4> {{ group2.name }} </h4></td>
-										<td colspan="2"> 
-											<template >世人所信仰的神，大于1000寿元，贡献7成寿元给予神明。
-											<span v-if="group2Wait>0"> {{ group2Wait }} 秒后即可贡献。</span></template></td>
-										<td>
-											<template >
-											<button class="btn btn-default" v-on:click="_joinGroup2" :disabled="group2Wait!=0 || life.lessThan(1000)">信仰贡献</button>
-
-											</template>						</td>
-									</tr>
-									
-								</tbody>
-							</table>
-							</div>
-							</br>
-							<input type=button value= "显示副本信息" onclick='document.getElementById("divID1").style.display="block"'>
-							<input type=button value= "隐藏副本信息" onclick='document.getElementById("divID1").style.display="none"'>
-							</br>
-							<br>
-							<table v-bind:style="tableCss" id="items"  class="table table-bordered table-condensed">
-								<tbody> 
-								<tr v-bind:style="Tr4css" id="itemRow">
-									<td class="text-left">
-									法宝：{{ items.length }}个
-									</td>
-									<td colspan="2" class="text-center">
-										<template v-if="itemWait!=0">
-										下次秘境开启 {{ itemWait }} 秒 ， 
+						<div class="vstack gap-3">
+							<!-- 背包 START -->
+							<div id="backpack" class="hstack border border-1 border-dark">
+								<span>敝筐</span>
+								<div class="container">
+									<div class="row row-cols-auto">
+										<template v-for="(item, index) in inventory">
+											<div class="col">
+												<button class="btn" v-on:click="_activate(item)">
+													{{ item.name }} ({{ item.count }})
+												</button>
+											</div>
 										</template>
-										门槛需达 {{ numFilter.txt( level.max.div(2).greaterThan( itemCost ) ? level.max.div(2).toString() : itemCost.toString() ) }} 修为，
-										消耗九成修为<br/>
-										拥有法宝越多、阁下的孽缘越多，可能会消耗寿命
-									</td>
-									<td class="text-center">
-										<button class="btn btn-default" v-on:click="_getNewItem" :disabled="point.lessThan( level.max.div(2) ) || point.lessThan(itemCost) || itemWait!=0 "> 寻找机缘</button>							
-										<template v-if="items.length!=0">
-										<button class="btn btn-default" v-on:click="_removeItems">舍弃法宝</button> 
+									</div>
+								</div>
+							</div>
+							<!-- 背包 END -->
+							<!-- 田地 START -->
+							<div id="field" class="hstack border border-1 border-dark">
+								<span>田地</span>
+								<div class="container">
+									<div class="row row-cols-auto">
+										<template v-for="(item, index) in field">
+											<div class="col">
+												<button class="btn" v-on:click="_activate(item)">
+													{{ item.name }}
+												</button>
+											</div>
 										</template>
-									</td>
-								</tr>
-								<tr v-for="(i, id) in items">
-									<td><h5> {{ i.name }} </h5></td> 
-									<td colspan="2" class="text-left"> {{ i.object.info }} </td>
-									<td>
-										<div v-if="i.object.useAble">
-											<button class="btn btn-default" v-on:click="_useItem(id)"> 使用 </button>
-										</div>
-										<div v-else style="color:gray;"> 被动 </div>
-										
-									</td>
-								</tr> 
-								</tbody>
-							</table>
-							<br>
-						</div> 
-						<hr/>
-						<!-- 存档面板 START -->
-						<div v-bind:style="logCss" class="text-left" >
-							<p v-for="t in logTxt">
-								{{ t }}
-							</p>
+									</div>
+								</div>
+							</div>
+							<!-- 背包 END -->
+						
+							<!-- 存档面板 START -->
+							<div class="vstack">
+								<div v-bind:style="logCss" class="text-left border border-1 border-dark my-2">
+									<p v-for="t in logTxt">{{ t }}</p>
+								</div>
+								<div class="d-flex justify-content-between">
+									<input style="width: 70%;" class="border border-1 border-dark" id="data" type="text" v-model="record" >
+									<button class="btn btn-default" v-on:click="_showData">存档</button>
+									<button class="btn btn-default" v-on:click="_loadData">读档</button>
+									<button class="btn btn-default" v-on:click="_newGame">新游戏</button>
+								</div>
+							</div>
+							<!-- 存档面板 END -->
 						</div>
-
-						<div>
-							<input id="data" v-bind:style="dataCss" type="text" v-model="record" >
-							<button class="btn btn-default" v-on:click="_showData">记录传承</button>
-							<button class="btn btn-default" v-on:click="_loadData">接受传承</button>
-							<button class="btn btn-default" v-on:click="_clearData">重新做人</button>
-						</div>
-						<!-- 存档面板 END -->
-						<hr/>
+					<!-- 面板2 end -->
 					</div>
-				</div>  
+				</div>
+				<!-- 主面板 END -->
 			</div>
-			
-
 		</div>
-		<!-- 主面板 END -->
-
-
+		
 		<!-- JiaThis Button BEGIN -->
 		<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;btn=r5.gif" charset="utf-8"></script>
 		<!-- JiaThis Button END -->
@@ -289,22 +135,21 @@
 
 		<script src="script/core-main.js" > </script>
 		<script src="script/core-timer.js"></script> 
-	<!--客服 开始-->
-	<link rel="stylesheet" href="//g8hh.com/static/css/kf.css" type="text/css" media="screen" charset="utf-8">
-	<script src="//g8hh.com/static/js/kf.js"></script>
-	<!-- 客服 结束 -->
-	<!--站长统计-->
-	<div style="display: none"><script>
-	var _hmt = _hmt || [];
-	(function() {
-	var hm = document.createElement("script");
-	hm.src = "https://hm.baidu.com/hm.js?f237591d5976f87ca2e06b38c3658d9c";
-	var s = document.getElementsByTagName("script")[0]; 
-	s.parentNode.insertBefore(hm, s);
-	})();
-	</script>
-
+		<!--客服 开始-->
+		<link rel="stylesheet" href="//g8hh.com/static/css/kf.css" type="text/css" media="screen" charset="utf-8">
+		<script src="//g8hh.com/static/js/kf.js"></script>
+		<!-- 客服 结束 -->
+		<!--站长统计-->
+		<div style="display: none">
+			<script>
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "https://hm.baidu.com/hm.js?f237591d5976f87ca2e06b38c3658d9c";
+					var s = document.getElementsByTagName("script")[0]; 
+					s.parentNode.insertBefore(hm, s);
+				})();
+			</script>
 		</div>
-
 	</body>
 </html>
