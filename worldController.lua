@@ -1,3 +1,3 @@
-local worldController = {viewHeight = 1280, viewWidth = 720}
+local worldController = {viewHeight = 720, viewWidth = 1280}
 
 return worldController
