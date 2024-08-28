@@ -1,5 +1,7 @@
+Class = require 'lib.hump.class'
 require 'game'
 require 'fonts'
+require 'ui'
 
 function love.load()
     love.window.setMode(game.worldController.viewWidth,
@@ -8,14 +10,11 @@ function love.load()
 end
 
 function love.draw()
-    love.graphics.setBackgroundColor(game.palette["山矾"])
-    love.graphics.setColor(game.palette["烟墨"])
-    love.graphics.setFont(fonts["刀隶体"])
-    love.graphics.print("铜钱一百文", 200, 100)
-    -- love.graphics.scale(WINDOW_WIDTH / VIRTUAL_WIDTH, WINDOW_HEIGHT / VIRTUAL_HEIGHT)
-    -- GameState:render()
-    -- love.graphics.setColor(FPS_COLOR)
-    -- love.graphics.setFont(FontPrimarySmall)
-    -- love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 40, 40)
-    -- love.graphics.setColor(WHITE)
+    local body = ui.createMenu({id = "body"})
+    body.color = game.palette["山矾"]
+    body.width, body.height = game.worldController.viewWidth,
+                              game.worldController.viewHeight
+    local label = body:createLabel({id = "money", text = "铜钱一百文"})
+    label.x, label.y = label.parent.width / 2, label.parent.height / 2
+    body:render()
 end
