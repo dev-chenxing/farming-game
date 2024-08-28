@@ -14,11 +14,13 @@ function uiElement:init(params)
     self.height = params.height or 0;
     self.type = params.type or game.uiElementType.rect;
     self.color = params.color or game.palette["烟墨"]
+    self.alpha = params.alpha or 1
     self.text = params.text or nil
 end
 
 function uiElement:render()
-    love.graphics.setColor(self.color)
+    love.graphics.setColor(self.color[1], self.color[2], self.color[3],
+                           self.alpha)
     if (self.type == game.uiElementType.rect) then
         love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
     elseif (self.type == game.uiElementType.text) then
@@ -46,6 +48,23 @@ function uiElement:createLabel(params)
     return result
 end
 
+---@param params uiElementCreateBlockParams
+---@return uiElement result
+function uiElement:createBlock(params)
+    local result = uiElement({
+        id = params.id,
+        parent = self,
+        type = game.uiElementType.rect,
+        alpha = 1
+    })
+    if not self.children then self.children = {} end
+    table.insert(self.children, result)
+    return result
+end
+
 ---@class uiElementCreateLabelParams
 ---@field id string
 ---@field text string
+
+---@class uiElementCreateBlockParams
+---@field id string
