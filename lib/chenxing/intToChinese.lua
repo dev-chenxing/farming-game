@@ -9,19 +9,21 @@ local units = {
 }
 local minus = "負"
 
-local smallUnit = units[1] .. units[2] .. units[3];
-local bigUnit = units[4] .. units[8] .. units[12] .. units[16] .. units[20];
-local zero = digits[0];
+local smallUnit = units[2] .. units[3] .. units[4];
+local bigUnit = units[5] .. units[9] .. units[13] .. units[17] .. units[21];
+local zero = digits[1];
+
+print(digits[1])
 
 return function(num)
     local str = ""
     local n = math.floor(math.abs(num))
-    if (n < 1) then return (num < 0 and minus or "") .. digits[0] end
+    if (n < 1) then return (num < 0 and minus or "") .. zero end
     local uc = table.copy(units);
     while (n > 0) do
         local d = n % 10; -- 数字
-        local u = uc.shift(); -- 单位
-        str = digits[d] + u + str;
+        local u = table.remove(uc, 1); -- 单位
+        str = digits[d + 1] .. u .. str;
         n = math.floor(n / 10);
     end
     str = str:gsub("(" .. zero .. ")[" .. smallUnit .. "]", "$1"):gsub("([" ..
@@ -35,7 +37,7 @@ return function(num)
                                                                            zero)
               :gsub("([" .. smallUnit .. "])" .. zero .. "+([" .. bigUnit ..
                         "])", "$1$2" .. zero)
-              :gsub("(" .. digits[0] .. ")+", "$1"):gsub(zero .. "+$", "")
-    str = str:gsub("^" .. digits[1] .. units[1], units[1])
+              :gsub("(" .. digits[1] .. ")+", "$1"):gsub(zero .. "+$", "")
+    str = str:gsub("^" .. digits[2] .. units[2], units[2])
     return (num < 0 and minus or "") .. str;
 end

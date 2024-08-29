@@ -1,5 +1,5 @@
 Class = require 'lib.hump.class'
-require 'table'
+require '.table'
 intToChinese = require 'lib.chenxing.intToChinese'
 require 'game'
 require 'fonts'

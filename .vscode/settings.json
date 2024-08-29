@@ -4,6 +4,7 @@
     "love",
     "fonts",
     "ui",
-    "intToChinese"
+    "intToChinese",
+    "tableCopy"
   ]
 }
