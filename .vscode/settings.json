@@ -3,6 +3,7 @@
     "game",
     "love",
     "fonts",
-    "ui"
+    "ui",
+    "intToChinese"
   ]
 }

@@ -22,7 +22,10 @@ function uiElement:render()
     love.graphics.setColor(self.color[1], self.color[2], self.color[3],
                            self.alpha)
     if (self.type == game.uiElementType.rect) then
-        love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
+        love.graphics.rectangle("fill",
+                                (self.parent and self.parent.x or 0) + self.x,
+                                (self.parent and self.parent.y or 0) + self.y,
+                                self.width, self.height)
     elseif (self.type == game.uiElementType.text) then
         local text = love.graphics.newText(fonts["刀隶体"], self.text)
         self.width, self.height = text:getWidth(), text:getHeight()
@@ -55,7 +58,21 @@ function uiElement:createBlock(params)
         id = params.id,
         parent = self,
         type = game.uiElementType.rect,
-        alpha = 1
+        alpha = 0
+    })
+    if not self.children then self.children = {} end
+    table.insert(self.children, result)
+    return result
+end
+
+---@param params uiElementCreateRectParams
+---@return uiElement result
+function uiElement:createRect(params)
+    local result = uiElement({
+        id = params.id,
+        parent = self,
+        type = game.uiElementType.rect,
+        color = params.color
     })
     if not self.children then self.children = {} end
     table.insert(self.children, result)
@@ -68,3 +85,7 @@ end
 
 ---@class uiElementCreateBlockParams
 ---@field id string
+
+---@class uiElementCreateRectParams
+---@field id string
+---@field color number[]?
