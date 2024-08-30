@@ -1,0 +1,24 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 19, in script
+    m "It's a kind of videogame you can play on your computer or a console."
+Exception: Sayer 'm' is not defined.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 19, in script
+    m "It's a kind of videogame you can play on your computer or a console."
+  File "D:\软件\renpy\renpy-8.3.0-sdk\renpy\ast.py", line 2572, in execute
+    Say.execute(self)
+  File "D:\软件\renpy\renpy-8.3.0-sdk\renpy\ast.py", line 575, in execute
+    who = eval_who(self.who, self.who_fast)
+  File "D:\软件\renpy\renpy-8.3.0-sdk\renpy\ast.py", line 464, in eval_who
+    raise Exception("Sayer '%s' is not defined." % who)
+Exception: Sayer 'm' is not defined.
+
+Windows-10-10.0.19041 AMD64
+Ren'Py 8.3.0.24082114
+Farming Game 1.0
+Fri Aug 30 16:54:57 2024

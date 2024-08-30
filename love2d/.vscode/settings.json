@@ -1,0 +1,10 @@
+{
+  "Lua.diagnostics.globals": [
+    "game",
+    "love",
+    "fonts",
+    "ui",
+    "intToChinese",
+    "tableCopy"
+  ]
+}
