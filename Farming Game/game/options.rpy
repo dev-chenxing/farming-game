@@ -12,15 +12,30 @@
 
 define config.name = _("鬼谷三家村")
 
+define gui.about = _("Created by 陈刑.")
+
+## 遊戲的版本
+
+define config.version = "1.0.0"
+
+## 儲存檔目錄 #######################################################################
+##
+## 控制Ren'Py將放置該遊戲的儲存文檔的平台特定位置。儲存文檔將放置在：
+##
+## Windows: %APPDATA\RenPy\<config.save_directory>
+##
+## Macintosh: $HOME/Library/RenPy/<config.save_directory>
+##
+## Linux: $HOME/.renpy/<config.save_directory>
+##
+## 通常不應更改，如果更改，則應始終是文字字串，而不是表達式。
+
+define config.save_directory = "Saves"
+
 
 ## 決定上面給出的標題是否顯示在主選單畫面上。將其設為 False 以隱藏標題。
 
 define gui.show_name = True
-
-
-## 遊戲的版本
-
-define config.version = "1.0"
 
 
 ## 放置在遊戲的關於螢幕上的文字。將文字放在三引號之間，並在段落之間留一個空行。
@@ -117,19 +132,7 @@ default preferences.text_cps = 0
 default preferences.afm_time = 15
 
 
-## 儲存檔目錄 #######################################################################
-##
-## 控制Ren'Py將放置該遊戲的儲存文檔的平台特定位置。儲存文檔將放置在：
-##
-## Windows: %APPDATA\RenPy\<config.save_directory>
-##
-## Macintosh: $HOME/Library/RenPy/<config.save_directory>
-##
-## Linux: $HOME/.renpy/<config.save_directory>
-##
-## 通常不應更改，如果更改，則應始終是文字字串，而不是表達式。
 
-define config.save_directory = "FarmingGame-1725005039"
 
 
 ## 圖標 ##########################################################################
