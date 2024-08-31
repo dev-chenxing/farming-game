@@ -1,4 +1,5 @@
 import re
+from typing import Union
 
 小寫數字表 = "零一二三四五六七八九"
 大寫數字表 = "零壹貳參肆伍陸柒捌玖"
@@ -12,7 +13,7 @@ import re
 
 
 # 取得數值
-def 轉數值(n, 傳回格式=False) -> int | float:
+def 轉數值(n, 傳回格式=False) -> Union[int, float]:
     if isinstance(n, str):
         # 百分比
         pat = r"(-?[\d](\.\d+)?)%"
@@ -92,7 +93,7 @@ def 中文數字轉數值(n):
 
 
 def 中文數字(
-    n: int | float | str,
+    n: Union[int, float, str],
     大寫: bool = False,
     簡體: bool = False,
     異體零: bool = False,
@@ -119,9 +120,14 @@ def 中文數字(
         cn = ""
         for pos, digit in enumerate(i):
             位名 = ""
-            if digit != "0" and pos > 0:
+            if (digit != "0") and (pos > 0):
                 位名 = 位名表[pos - 1]
-            cn = 數字表[int(digit)] + 位名 + cn
+                cn = 數字表[int(digit)] + 位名 + cn
+            elif (pos == 0):
+                cn = 數字表[int(digit)] + cn
+            elif (digit == "0"):
+                cn = 數字表[int(digit)] + cn
+            print(cn)
         return cn
 
     for pos, 一組阿拉伯數字 in enumerate(
@@ -131,14 +137,14 @@ def 中文數字(
         if pos > 0:
             _cn = _cn + _組名表[pos - 1]
         cn = _cn + cn
-    # 一萬零六百零零 -> 一萬零六百
-    cn = re.sub("零+$", "", cn)
+    # 一萬零零六十零 -> 一萬零六十零
+    cn = re.sub("零+", "零", cn)
+    # 一萬零六十零 -> 一萬零六十
+    cn = re.sub("(.)零$", r"\1", cn)
     # 一十六 -> 十六
     cn = re.sub("^一十", "十", cn)
-    # 一千六百 -> 一千六
-    cn = re.sub(f"(千[{數字表}])百$", r"\1", cn)
-    # 一百一十 -> 一百一
-    cn = re.sub(f"(百[{數字表}])十$", r"\1", cn)
+    # 十零萬 -> 十萬
+    cn = re.sub(f"([{位名表}])零([{_組名表}])", r"\1\2", cn)
     if d != "":
         cn += 點 + d.translate(str.maketrans("0123456789", 數字表))
     return cn

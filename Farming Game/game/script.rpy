@@ -8,7 +8,7 @@ init python:
 
 label start:
 
-    show text "铜钱" + 中文數字(100) + "文"
+    show text "铜钱" + 中文數字(14193182498) + "文"
 
     pause
 

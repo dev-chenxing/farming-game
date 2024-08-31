@@ -337,6 +337,71 @@ style navigation_button_text:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#main-menu
 
+init -999 python:
+    
+    import random
+    from typing import Optional
+
+    objects = []
+
+    class Player():
+        def __init__(self):
+            self.coins = 0
+    player = Player()
+
+    class Object():
+        def __init__(self, objId, name, value=None, crop=None):
+            self.id = objId
+            self.name = name
+            self.crop = crop
+            self.value = value
+            objects.append(self)
+    
+    def getObject(objId):
+        return next(obj for obj in objects if obj.id is objId)
+
+    class Reference():
+        def __init__(self, obj):
+            if type(obj) is str:
+                self.object = getObject(obj)
+            else:
+                self.object = obj
+        def delete(self):
+            del self
+        
+    class ItemStack():
+        def __init__(self, obj, count=1):
+            self.object = obj
+            self.count = count
+    
+    white_radish = Object(objId="white_radish", name="白蘿蔔", value=100)
+    white_radish_seed = Object(objId="white_radish_seed", name="白蘿蔔種子", crop="white_radish")
+
+    seed_stack = ItemStack(obj=white_radish_seed, count=15)
+    inventory: list[ItemStack] = [seed_stack]
+    field: list[Reference] = []
+
+    def remove_item(item: Object, count=1):
+        item_stack = next(i for i in inventory if i.object is item)
+        item_stack.count -= 1
+        if item_stack.count is 0:
+            inventory.remove(item_stack)
+
+    def plant(item):
+        remove_item(item=item, count=1)
+        field.append(Reference(obj=item.crop))
+    
+    def calculatePrice(item, count=1):
+        return item.value * count
+
+    def sell(ref):
+        player.coins += calculatePrice(ref.object, count=1)
+
+    def harvest(ref):
+        field.remove(ref)
+        sell(ref)
+        ref:delete()
+
 screen main_menu():
 
     ## 這可確保替換任何其他選單畫面。
@@ -344,23 +409,25 @@ screen main_menu():
 
     add gui.main_menu_background
 
-    ## 這個空框使主選單變暗。
     frame:
-        style "main_menu_frame"
-
-    ## use 語句在該畫面中包含另一個畫面。主選單的實際內容在導航畫面中。
-    use navigation
-
-    if gui.show_name:
+        xfill True
+        yfill True
 
         vbox:
-            style "main_menu_vbox"
-
-            text "[config.name!t]":
-                style "main_menu_title"
-
-            text "[config.version]":
-                style "main_menu_version"
+            xalign 0.5
+            ypos 360
+            vbox:
+                spacing 10
+                text "铜钱" + 中文數字(player.coins) + "文"  xalign 0.5
+                hbox xalign 0.5:
+                    ysize 48
+                    for item_stack in inventory:
+                        if (item_stack.count > 0):
+                            textbutton f"{item_stack.object.name}{中文數字(item_stack.count)}顆" action Function(plant, item=item_stack.object)
+                hbox xalign 0.5:
+                    ysize 48
+                    for plant_ref in field:
+                        textbutton plant_ref.object.name action Function(harvest, plant_ref)
 
 
 style main_menu_frame is empty

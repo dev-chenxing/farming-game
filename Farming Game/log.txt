@@ -1,36 +1,37 @@
-2024-08-30 17:01:53 UTC
+2024-08-31 14:01:12 UTC
 Windows-10-10.0.22000
 Ren'Py 8.3.0.24082114
 
-Early init took 0.05s
+Early init took 0.04s
 Loading error handling took 0.02s
-Loading script took 0.06s
+Loading script took 0.14s
 Loading save slot metadata took 0.02s
 Loading persistent took 0.00s
-
-Full traceback:
-  File "game/script.rpy", line 3, in script
-    init python:
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\ast.py", line 821, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\python.py", line 1178, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/script.rpy", line 4, in <module>
-    from game.lib.zhongwen.number import 中文數字
-  File "D:\farming-game\Farming Game\game\lib\zhongwen\number.py", line 15, in <module>
-    def 轉數值(n, 傳回格式=False) -> int | float:
-TypeError: unsupported operand type(s) for |: 'type' and 'type'
-
-While running game code:
-  File "game/script.rpy", line 3, in script
-    init python:
-  File "game/script.rpy", line 4, in <module>
-    from game.lib.zhongwen.number import 中文數字
-TypeError: unsupported operand type(s) for |: 'type' and 'type'
+Running init code took 0.03s
+Loading analysis data took 0.01s
+Analyze and compile ATL took 0.00s
+Reloading save slot metadata took 0.01s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Administrator\\AppData\\Roaming/RenPy/backups\\Farming Game':
+Dump and make backups took 0.03s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc took 0.03s
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
-Interface start took 0.29s
+Creating interface object took 0.19s
+Cleaning stores took 0.00s
+Init translation took 0.02s
+Build styles took 0.00s
+Load screen analysis took 0.00s
+Analyze screens took 0.01s
+Save screen analysis took 0.01s
+Prepare screens took 0.04s
+Save pyanalysis. took 0.01s
+Save bytecode. took 0.02s
+Running _start took 0.00s
+Interface start took 0.03s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 2560, 1440)
@@ -42,3 +43,476 @@ Version: b'4.6.0 - Build 31.0.101.5186'
 Display Info: None
 Screen sizes: virtual=(1920, 1080) physical=(1419, 798) drawable=(1419, 798)
 Maximum texture size: 4096x4096
+零
+五
+一十五
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+四
+一十四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+四
+一十四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+三
+一十三
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+二
+一十二
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+一
+一十一
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+零
+一十零
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+九
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+八
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+七
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+六
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+五
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+二百零零
+四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+三百零零
+四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+四百零零
+四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+五百零零
+四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+六百零零
+四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+七百零零
+四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+八百零零
+四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+九百零零
+四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+零零零
+一千零零零
+四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+一千一百零零
+四
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+一千一百零零
+三
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+一千一百零零
+二
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+一千一百零零
+一
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+一百零零
+一千一百零零
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+二百零零
+一千二百零零
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+三百零零
+一千三百零零
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+四百零零
+一千四百零零
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一
+零
+零零
+五百零零
+一千五百零零
+八
+九十八
+四百九十八
+二千四百九十八
+八
+一十八
+三百一十八
+九千三百一十八
+一
+四十一
+一百四十一

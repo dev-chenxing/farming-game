@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 7: expected statement.
-    Text("铜钱一百文")
-                 ^
+File "game/screens.rpy", line 418: 'yminimun' is not a keyword argument or valid child of the hbox statement.
+    hbox xalign 0.5 yminimun 36:
+                            ^
 
 Ren'Py Version: Ren'Py 8.3.0.24082114
-Fri Aug 30 21:44:59 2024
+Sat Aug 31 21:47:22 2024
