@@ -1,48 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 12, in script
-    show text "铜钱" + int_to_chinese(100) + "文"
-  File "game/script.rpy", line 12, in script
-    show text "铜钱" + int_to_chinese(100) + "文"
-AttributeError: module 'math' has no attribute 'abs'
+  File "game/script.rpy", line 3, in script
+    init python:
+  File "game/script.rpy", line 4, in <module>
+    from game.lib.zhongwen.number import 中文數字
+TypeError: unsupported operand type(s) for |: 'type' and 'type'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\bootstrap.py", line 359, in bootstrap
-    renpy.main.main()
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\main.py", line 652, in main
-    run(restart)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\main.py", line 148, in run
-    renpy.execution.run_context(True)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\execution.py", line 958, in run_context
-    context.run()
-  File "game/script.rpy", line 12, in script
-    show text "铜钱" + int_to_chinese(100) + "文"
-  File "lib/python3.9/future/utils/__init__.py", line 444, in raise_
-  File "game/script.rpy", line 12, in script
-    show text "铜钱" + int_to_chinese(100) + "文"
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\ast.py", line 1111, in execute
-    show_imspec(self.imspec, atl=getattr(self, "atl", None))
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\ast.py", line 1074, in show_imspec
-    renpy.config.show(name,
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\exports\displayexports.py", line 477, in show
-    if not base.find_target() and renpy.config.missing_show:
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\image.py", line 421, in find_target
-    self.target = target._duplicate(a)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\text\extras.py", line 266, in _duplicate
-    string = renpy.python.py_eval(param)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\python.py", line 1209, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\python.py", line 1202, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-  File "<none>", line 1, in <module>
-  File "D:\farming-game\Farming Game\game\lib\chenxing\int_to_chinese.py", line 40, in int_to_chinese
-    n = math.floor(abs(num))
-AttributeError: module 'math' has no attribute 'abs'
+  File "game/script.rpy", line 3, in script
+    init python:
+  File "D:\renpy\renpy-8.3.0-sdk\renpy\ast.py", line 821, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "D:\renpy\renpy-8.3.0-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 4, in <module>
+    from game.lib.zhongwen.number import 中文數字
+  File "D:\farming-game\Farming Game\game\lib\zhongwen\number.py", line 15, in <module>
+    def 轉數值(n, 傳回格式=False) -> int | float:
+TypeError: unsupported operand type(s) for |: 'type' and 'type'
 
 Windows-10-10.0.22000 AMD64
 Ren'Py 8.3.0.24082114
 鬼谷三家村 1.0.0
-Fri Aug 30 22:12:50 2024
+Sat Aug 31 01:01:53 2024
