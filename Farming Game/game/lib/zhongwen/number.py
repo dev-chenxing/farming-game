@@ -328,18 +328,6 @@ def 連續正負次數(數列):
     return s
 
 
-def 最近連續正負次數(時序):
-    from warnings import warn
-    from zhongwen.時序分析 import 最近連續正負次數
-
-    warn(
-        f"【最近連續正負次數】已移到「時序分析」模組，請使用【from 時序分析 import 最近連續正負次數】。",
-        DeprecationWarning,
-        stacklevel=2,
-    )
-    return 最近連續正負次數(時序)
-
-
 def 連續正數(數列):
     import numpy as np
 
