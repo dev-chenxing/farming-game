@@ -6,7 +6,7 @@
 ## 行。
 init offset = -2
 
-## 呼叫 gui.init 將樣式重置為合理的預設值，並設定遊戲的寬度和高度
+## 呼叫 gui.init 將樣式重置為合理的預設值，並设定遊戲的寬度和高度
 init python:
     gui.init(1920, 1080)
 
@@ -55,13 +55,13 @@ define gui.interface_text_color = '#404040'
 ## 字形和字形大小 #####################################################################
 
 ## 用於遊戲內文字的字形
-define gui.text_font = "SourceHanSansLite.ttf"
+define gui.text_font = "AlimamaDaoLiTi.ttf"
 
 ## 用於角色名稱的字形
-define gui.name_text_font = "SourceHanSansLite.ttf"
+define gui.name_text_font = "AlimamaDaoLiTi.ttf"
 
 ## 用於遊戲外文本的字形
-define gui.interface_text_font = "SourceHanSansLite.ttf"
+define gui.interface_text_font = "AlimamaDaoLiTi.ttf"
 
 ## 正常對話文字的大小
 define gui.text_size = 33
@@ -100,7 +100,7 @@ define gui.textbox_height = 278
 define gui.textbox_yalign = 1.0
 
 
-## 對話角色的名字相對於文本框的位置。這些可以是從左側或頂部開始的整數像素，也可
+## 對話角色的名字相對於文本框的位置。這些可以是從左側或頂部开始的整數像素，也可
 ## 以是到中心的 0.5 個像素
 define gui.name_xpos = 360
 define gui.name_ypos = 0
@@ -163,10 +163,10 @@ define gui.button_text_insensitive_color = gui.insensitive_color
 define gui.button_text_xalign = 0.0
 
 
-## 這些變數會覆寫不同類型按鈕的設定。請參閱 gui 文檔以了解可用按鈕的類型以及每個
+## 這些變數會覆寫不同類型按鈕的设定。請參閱 gui 文檔以了解可用按鈕的類型以及每個
 ## 按鈕的用途
 ##
-## 預設介面使用這些自訂設定：
+## 預設介面使用這些自訂设定：
 
 define gui.radio_button_borders = Borders(27, 6, 6, 6)
 
@@ -181,8 +181,8 @@ define gui.quick_button_text_size = 21
 define gui.quick_button_text_idle_color = gui.idle_small_color
 define gui.quick_button_text_selected_color = gui.accent_color
 
-## 您也可以透過新增正確命名的變數來新增自己的自訂設定。例如，您可以取消註解以下
-## 行以設定導覽按鈕的寬度
+## 您也可以透過新增正確命名的變數來新增自己的自訂设定。例如，您可以取消註解以下
+## 行以设定導覽按鈕的寬度
 
 # define gui.navigation_button_width = 250
 
@@ -205,10 +205,10 @@ define gui.choice_button_text_insensitive_color = '#7070707f'
 
 ## 存檔槽按鈕 #######################################################################
 ##
-## 存檔槽按鈕是一種特殊類型的按鈕。它包含縮圖和描述儲存槽內容的文字。與其他類型
-## 的按鈕一樣，儲存槽使用 gui/button 中的圖像檔案
+## 存檔槽按鈕是一種特殊類型的按鈕。它包含縮圖和描述储存槽內容的文字。與其他類型
+## 的按鈕一樣，储存槽使用 gui/button 中的圖像檔案
 
-## 儲存槽按鈕
+## 储存槽按鈕
 define gui.slot_button_width = 414
 define gui.slot_button_height = 309
 define gui.slot_button_borders = Borders(15, 15, 15, 15)
@@ -218,11 +218,11 @@ define gui.slot_button_text_idle_color = gui.idle_small_color
 define gui.slot_button_text_selected_idle_color = gui.selected_color
 define gui.slot_button_text_selected_hover_color = gui.hover_color
 
-## 儲存槽使用的縮圖的寬度和高度
+## 储存槽使用的縮圖的寬度和高度
 define config.thumbnail_width = 384
 define config.thumbnail_height = 216
 
-## 儲存槽網格中的列數和行數
+## 储存槽網格中的列數和行數
 define gui.file_slot_cols = 3
 define gui.file_slot_rows = 2
 
@@ -312,17 +312,17 @@ define gui.vslider_borders = Borders(6, 6, 6, 6)
 define gui.unscrollable = "hide"
 
 
-## 歷史 ##########################################################################
+## 历史 ##########################################################################
 ##
-## 歷史畫面顯示玩家已經閱讀過的對話
+## 历史畫面顯示玩家已經閱讀過的對話
 
-## Ren'Py 將保留的對話歷史記錄區塊的數量
+## Ren'Py 將保留的對話历史記錄區塊的數量
 define config.history_length = 250
 
-## 歷史畫面條目的高度，或設爲 None 以犧牲性能為代價使高度可變
+## 历史畫面條目的高度，或設爲 None 以犧牲性能為代價使高度可變
 define gui.history_height = 210
 
-## 在歷史畫面條目之間添加的額外空間。
+## 在历史畫面條目之間添加的額外空間。
 define gui.history_spacing = 0
 
 ## 給予對話角色名稱的標籤的位置、寬度和對齊方式

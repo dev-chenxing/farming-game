@@ -113,7 +113,7 @@ screen say(who, what):
         add SideImage() xalign 0.0 yalign 1.0
 
 
-## 使名稱框可用於透過角色物件進行樣式設定。
+## 使名稱框可用於透過角色物件進行樣式设定。
 init python:
     config.character_id_prefixes.append('namebox')
 
@@ -242,13 +242,13 @@ screen quick_menu():
             yalign 1.0
 
             textbutton _("返回") action Rollback()
-            textbutton _("歷史") action ShowMenu('history')
-            textbutton _("略過") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("自動") action Preference("auto-forward", "toggle")
-            textbutton _("儲存") action ShowMenu('save')
-            textbutton _("Q.儲存") action QuickSave()
-            textbutton _("Q.讀取") action QuickLoad()
-            textbutton _("設定") action ShowMenu('preferences')
+            textbutton _("历史") action ShowMenu('history')
+            textbutton _("略过") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("自动") action Preference("auto-forward", "toggle")
+            textbutton _("储存") action ShowMenu('save')
+            textbutton _("Q.储存") action QuickSave()
+            textbutton _("Q.读取") action QuickLoad()
+            textbutton _("设定") action ShowMenu('preferences')
 
 
 ## 此代碼確保只要玩家沒有明確隱藏介面， quick_menu 畫面就會在遊戲中顯示。
@@ -273,7 +273,7 @@ style quick_button_text:
 
 ## 導航畫面 ########################################################################
 ##
-## 此畫面包含在主選單和遊戲選單中，並提供其他選單的導航以及開始遊戲的導航。
+## 此畫面包含在主選單和遊戲選單中，並提供其他選單的導航以及开始遊戲的導航。
 
 screen navigation():
 
@@ -287,17 +287,17 @@ screen navigation():
 
         if main_menu:
 
-            textbutton _("開始") action Start()
+            textbutton _("开始") action Start()
 
         else:
 
-            textbutton _("歷史") action ShowMenu("history")
+            textbutton _("历史") action ShowMenu("history")
 
-            textbutton _("儲存") action ShowMenu("save")
+            textbutton _("储存") action ShowMenu("save")
 
-        textbutton _("加載") action ShowMenu("load")
+        textbutton _("加载") action ShowMenu("load")
 
-        textbutton _("設定") action ShowMenu("preferences")
+        textbutton _("设定") action ShowMenu("preferences")
 
         if _in_replay:
 
@@ -305,19 +305,19 @@ screen navigation():
 
         elif not main_menu:
 
-            textbutton _("標題畫面") action MainMenu()
+            textbutton _("标题画面") action MainMenu()
 
-        textbutton _("關於") action ShowMenu("about")
+        textbutton _("关于") action ShowMenu("about")
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## 幫助對於行動裝置來說是不必要或不相關的。
-            textbutton _("説明") action ShowMenu("help")
+            textbutton _("说明") action ShowMenu("help")
 
         if renpy.variant("pc"):
 
             ## 退出按鈕在 iOS 上被禁止，在 Android 和 Web 上則不必要。
-            textbutton _("離開") action Quit(confirm=not main_menu)
+            textbutton _("离开") action Quit(confirm=not main_menu)
 
 
 style navigation_button is gui_button
@@ -341,24 +341,33 @@ init -999 python:
     
     import random
     from typing import Optional
+    from game.lib.zhongwen.number import 中文數字
 
     objects = []
 
-    class Player():
-        def __init__(self):
-            self.coins = 0
-    player = Player()
-
     class Object():
-        def __init__(self, objId, name, value=None, crop=None):
+        def __init__(self, objId, name):
             self.id = objId
             self.name = name
-            self.crop = crop
-            self.value = value
             objects.append(self)
-    
     def getObject(objId):
         return next(obj for obj in objects if obj.id is objId)
+
+    class Player(Object):
+        def __init__(self, objId, name):
+            Object.__init__(self, objId, name)
+            self.coins = 0
+    player = Player(objId="player", name="新鬼")
+
+    class Seed(Object):
+        def __init__(self, objId, name, value=0, crop=None):
+            Object.__init__(self, objId, name)
+            self.value = value
+            self.crop = crop
+    class Crop(Object):
+        def __init__(self, objId, name, value):
+            Object.__init__(self, objId, name)
+            self.value = value
 
     class Reference():
         def __init__(self, obj):
@@ -374,8 +383,8 @@ init -999 python:
             self.object = obj
             self.count = count
     
-    white_radish = Object(objId="white_radish", name="白蘿蔔", value=100)
-    white_radish_seed = Object(objId="white_radish_seed", name="白蘿蔔種子", crop="white_radish")
+    white_radish = Crop(objId="white_radish", name="白萝卜", value=100)
+    white_radish_seed = Seed(objId="white_radish_seed", name="白萝卜种子", crop="white_radish")
 
     seed_stack = ItemStack(obj=white_radish_seed, count=15)
     inventory: list[ItemStack] = [seed_stack]
@@ -403,8 +412,7 @@ init -999 python:
         ref:delete()
 
 screen main_menu():
-
-    ## 這可確保替換任何其他選單畫面。
+    
     tag menu
 
     add gui.main_menu_background
@@ -412,6 +420,8 @@ screen main_menu():
     frame:
         xfill True
         yfill True
+
+        use quick_menu
 
         vbox:
             xalign 0.5
@@ -423,7 +433,7 @@ screen main_menu():
                     ysize 48
                     for item_stack in inventory:
                         if (item_stack.count > 0):
-                            textbutton f"{item_stack.object.name}{中文數字(item_stack.count)}顆" action Function(plant, item=item_stack.object)
+                            textbutton f"{item_stack.object.name}{中文數字(item_stack.count)}颗" action Function(plant, item=item_stack.object)
                 hbox xalign 0.5:
                     ysize 48
                     for plant_ref in field:
@@ -590,7 +600,7 @@ style return_button:
     yoffset -45
 
 
-## 關於畫面 ########################################################################
+## 关于畫面 ########################################################################
 ##
 ## 此畫面提供有關遊戲和Ren'Py的製作人員名單和版權資訊。
 ##
@@ -602,7 +612,7 @@ screen about():
 
     ## 此 use 語句包含此畫面中的 game_menu 畫面。然後，vbox 子項將包含在
     ## game_menu 畫面內的視口內
-    use game_menu(_("關於"), scroll="viewport"):
+    use game_menu(_("关于"), scroll="viewport"):
 
         style_prefix "about"
 
@@ -611,7 +621,7 @@ screen about():
             label "[config.name!t]"
             text _("版本 [config.version!t]\n")
 
-            ## gui.about 通常在 options.rpy 中設定。
+            ## gui.about 通常在 options.rpy 中设定。
             if gui.about:
                 text "[gui.about!t]\n"
 
@@ -626,7 +636,7 @@ style about_label_text:
     size gui.label_text_size
 
 
-## 載入和儲存畫面 #####################################################################
+## 載入和储存畫面 #####################################################################
 ##
 ## 這些畫面負責讓玩家保存遊戲並再次載入。由於它們幾乎共享所有共同點，因此兩者都
 ## 是透過第三個畫面 file_slots 實現的。
@@ -638,19 +648,19 @@ screen save():
 
     tag menu
 
-    use file_slots(_("儲存"))
+    use file_slots(_("储存"))
 
 
 screen load():
 
     tag menu
 
-    use file_slots(_("加載"))
+    use file_slots(_("加载"))
 
 
 screen file_slots(title):
 
-    default page_name_value = FilePageNameInputValue(pattern=_("頁面 {}"), auto=_("自動儲存"), quick=_("快速儲存"))
+    default page_name_value = FilePageNameInputValue(pattern=_("页面 {}"), auto=_("自動储存"), quick=_("快速储存"))
 
     use game_menu(title):
 
@@ -729,11 +739,11 @@ screen file_slots(title):
 
                 if config.has_sync:
                     if CurrentScreenName() == "save":
-                        textbutton _("上傳同步"):
+                        textbutton _("上传同步"):
                             action UploadSync()
                             xalign 0.5
                     else:
-                        textbutton _("下載同步"):
+                        textbutton _("下载同步"):
                             action DownloadSync()
                             xalign 0.5
 
@@ -780,7 +790,7 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("設定"), scroll="viewport"):
+    use game_menu(_("设定"), scroll="viewport"):
 
         vbox:
 
@@ -928,10 +938,10 @@ style slider_vbox:
     xsize 675
 
 
-## 歷史畫面 ########################################################################
+## 历史畫面 ########################################################################
 ##
-## 這是向玩家顯示對話歷史記錄的畫面。 雖然這個畫面沒有什麼特別的，但它必須存取儲
-## 存在 _history_list 中的對話歷史記錄。
+## 這是向玩家顯示對話历史記錄的畫面。 雖然這個畫面沒有什麼特別的，但它必須存取儲
+## 存在 _history_list 中的對話历史記錄。
 ##
 ## https://www.renpy.org/doc/html/history.html
 
@@ -942,7 +952,7 @@ screen history():
     ## 避免預測該螢幕，因為它可能非常大。
     predict False
 
-    use game_menu(_("歷史"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0, spacing=gui.history_spacing):
+    use game_menu(_("历史"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0, spacing=gui.history_spacing):
 
         style_prefix "history"
 
@@ -960,7 +970,7 @@ screen history():
                         style "history_name"
                         substitute False
 
-                        ## 從角色中取得 who 文字的顏色（如果已設定）。
+                        ## 從角色中取得 who 文字的顏色（如果已设定）。
                         if "color" in h.who_args:
                             text_color h.who_args["color"]
 
@@ -969,10 +979,10 @@ screen history():
                     substitute False
 
         if not _history_list:
-            label _("對話歷史記錄為空。")
+            label _("历史记录为空。")
 
 
-## 這決定了允許在歷史螢幕上顯示哪些標籤。
+## 這決定了允許在历史螢幕上顯示哪些標籤。
 
 define gui.history_allow_tags = { "alt", "noalt", "rt", "rb", "art" }
 
@@ -1027,7 +1037,7 @@ screen help():
 
     default device = "keyboard"
 
-    use game_menu(_("説明"), scroll="viewport"):
+    use game_menu(_("说明"), scroll="viewport"):
 
         style_prefix "help"
 
@@ -1143,7 +1153,7 @@ screen gamepad_help():
         text _("導航介面。")
 
     hbox:
-        label _("開始，指南，B/右鍵")
+        label _("开始，指南，B/右鍵")
         text _("訪問遊戲選單。")
 
     hbox:
@@ -1364,7 +1374,7 @@ screen nvl(dialogue, items=None):
 
             use nvl_dialogue(dialogue)
 
-        ## 顯示選單（如果給定）。如果 config.narrator_menu 設定為 True，則選單可
+        ## 顯示選單（如果給定）。如果 config.narrator_menu 设定為 True，則選單可
         ## 能無法正確顯示。
         for i in items:
 

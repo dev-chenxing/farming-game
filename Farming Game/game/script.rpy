@@ -1,14 +1,9 @@
 ﻿# 遊戲腳本位於此檔案。
 
-init python:
-    from game.lib.zhongwen.number import 中文數字
-
-# 遊戲從這裡開始。
+# 遊戲從這裡开始。
 
 
 label start:
-
-    show text "铜钱" + 中文數字(14193182498) + "文"
 
     pause
 

@@ -291,7 +291,7 @@ translate None strings:
 
     # renpy/common/00action_file.rpy:395
     old "Save slot %s: [text]"
-    new "儲存槽 %s: [text]"
+    new "储存槽 %s: [text]"
 
     # renpy/common/00action_file.rpy:480
     old "Load slot %s: [text]"
@@ -315,15 +315,15 @@ translate None strings:
 
     # renpy/common/00action_file.rpy:674
     old "Page {}"
-    new "頁面 {}"
+    new "页面 {}"
 
     # renpy/common/00action_file.rpy:674
     old "Automatic saves"
-    new "自動儲存"
+    new "自動储存"
 
     # renpy/common/00action_file.rpy:674
     old "Quick saves"
-    new "快速儲存"
+    new "快速储存"
 
     # renpy/common/00action_file.rpy:815
     old "Next file page."
@@ -335,7 +335,7 @@ translate None strings:
 
     # renpy/common/00action_file.rpy:948
     old "Quick save complete."
-    new "快速儲存。"
+    new "快速储存。"
 
     # renpy/common/00action_file.rpy:963
     old "Quick save."
@@ -343,7 +343,7 @@ translate None strings:
 
     # renpy/common/00action_file.rpy:982
     old "Quick load."
-    new "快速加載"
+    new "快速加载"
 
     # renpy/common/00action_other.rpy:383
     old "Language [text]"
@@ -435,7 +435,7 @@ translate None strings:
 
     # renpy/common/00director.rpy:1775
     old "Click to set transform, right click to add to transform list."
-    new "點擊設定變換，右鍵加入到變換列表"
+    new "點擊设定變換，右鍵加入到變換列表"
 
     # renpy/common/00director.rpy:1776
     old "Customize director.transforms to add more transforms."
@@ -455,7 +455,7 @@ translate None strings:
 
     # renpy/common/00director.rpy:1821
     old "Click to set."
-    new "點擊設定。"
+    new "點擊设定。"
 
     # renpy/common/00director.rpy:1822
     old "Customize director.transitions to add more transitions."
@@ -487,15 +487,15 @@ translate None strings:
 
     # renpy/common/00gui.rpy:451
     old "Loading will lose unsaved progress.\nAre you sure you want to do this?"
-    new "載入將會失去所有未儲存的進度。\n您確定您要這麼做嗎？"
+    new "載入將會失去所有未储存的進度。\n您確定您要這麼做嗎？"
 
     # renpy/common/00gui.rpy:452
     old "Are you sure you want to quit?"
-    new "您確定您要離開嗎？"
+    new "您確定您要离开嗎？"
 
     # renpy/common/00gui.rpy:453
     old "Are you sure you want to return to the main menu?\nThis will lose unsaved progress."
-    new "您確定您想回到標題畫面嗎？\n這將使您失去所有未儲存的進度。"
+    new "您確定您想回到標題畫面嗎？\n這將使您失去所有未储存的進度。"
 
     # renpy/common/00gui.rpy:454
     old "Are you sure you want to continue where you left off?"
@@ -507,7 +507,7 @@ translate None strings:
 
     # renpy/common/00gui.rpy:456
     old "Are you sure you want to begin skipping?"
-    new "是否確定開始略過？"
+    new "是否確定开始略過？"
 
     # renpy/common/00gui.rpy:457
     old "Are you sure you want to skip to the next choice?"
@@ -519,7 +519,7 @@ translate None strings:
 
     # renpy/common/00gui.rpy:459
     old "This save was created on a different device. Maliciously constructed save files can harm your computer. Do you trust this save's creator and everyone who could have changed the file?"
-    new "此儲存是在不同裝置上建立的。惡意建構的儲存檔案可能會損害您的電腦。您信任此儲存的建立者以及可能變更該檔案的每個人嗎？"
+    new "此储存是在不同裝置上建立的。惡意建構的储存檔案可能會損害您的電腦。您信任此储存的建立者以及可能變更該檔案的每個人嗎？"
 
     # renpy/common/00gui.rpy:460
     old "Do you trust the device the save was created on? You should only choose yes if you are the device's sole user."
@@ -527,11 +527,11 @@ translate None strings:
 
     # renpy/common/00keymap.rpy:328
     old "Failed to save screenshot as %s."
-    new "無法將螢幕截圖儲存為 %s 。"
+    new "無法將螢幕截圖储存為 %s 。"
 
     # renpy/common/00keymap.rpy:349
     old "Saved screenshot as %s."
-    new "儲存螢幕截圖為 %s。"
+    new "储存螢幕截圖為 %s。"
 
     # renpy/common/00library.rpy:248
     old "Skip Mode"
@@ -587,7 +587,7 @@ translate None strings:
 
     # renpy/common/00preferences.rpy:362
     old "begin skipping"
-    new "開始快進"
+    new "开始快進"
 
     # renpy/common/00preferences.rpy:366
     old "after choices"
@@ -779,7 +779,7 @@ translate None strings:
 
     # renpy/common/00preferences.rpy:701
     old "Self-voicing would say \"[renpy.display.tts.last]\". Press 'alt+shift+V' to disable."
-    new "Self-voicing 會開始朗讀 \"[renpy.display.tts.last]\"。 按 'alt+shift+V' 來禁用。"
+    new "Self-voicing 會开始朗讀 \"[renpy.display.tts.last]\"。 按 'alt+shift+V' 來禁用。"
 
     # renpy/common/00preferences.rpy:703
     old "Self-voicing enabled. Press 'v' to disable."
@@ -839,7 +839,7 @@ translate None strings:
 
     # renpy/common/00sync.rpy:443
     old "This will upload your saves to the {a=https://sync.renpy.org}Ren'Py Sync Server{/a}.\nDo you want to continue?"
-    new "這會將您的儲存上傳到 {a=https://sync.renpy.org} Ren'Py 同步服務器 {/a} 。 \n 你想要繼續嗎？"
+    new "這會將您的储存上傳到 {a=https://sync.renpy.org} Ren'Py 同步服務器 {/a} 。 \n 你想要繼續嗎？"
 
     # renpy/common/00sync.rpy:451
     old "Yes"
@@ -1111,7 +1111,7 @@ translate None strings:
 
     # renpy/common/00gltest.rpy:215
     old "Quit"
-    new "離開"
+    new "离开"
 
     # renpy/common/00gltest.rpy:244
     old "Performance Warning"
@@ -1231,7 +1231,7 @@ translate None strings:
 
     # renpy/common/_errorhandling.rpym:759
     old "Reloads the game from disk, saving and restoring game state if possible."
-    new "從硬碟重新載入遊戲，請您儲存遊戲狀態。"
+    new "從硬碟重新載入遊戲，請您储存遊戲狀態。"
 
     # renpy/common/_errorhandling.rpym:762
     old "Console"
@@ -1243,7 +1243,7 @@ translate None strings:
 
     # renpy/common/_errorhandling.rpym:777
     old "Quits the game."
-    new "離開遊戲。"
+    new "离开遊戲。"
 
     # renpy/common/_errorhandling.rpym:799
     old "Parsing the script failed."
@@ -1283,11 +1283,11 @@ translate None strings:
 
     # renpy/common/_developer/developer.rpym:60
     old "Show Image Load Log (F4)"
-    new "顯示圖像加載日誌（F4）"
+    new "顯示圖像加载日誌（F4）"
 
     # renpy/common/_developer/developer.rpym:63
     old "Hide Image Load Log (F4)"
-    new "隱藏圖像加載日誌（F4）"
+    new "隱藏圖像加载日誌（F4）"
 
     # renpy/common/_developer/developer.rpym:66
     old "Image Attributes"
@@ -1379,7 +1379,7 @@ translate None strings:
 
     # renpy/common/_developer/developer.rpym:566
     old "\n{color=#cfc}✔ predicted image (good){/color}\n{color=#fcc}✘ unpredicted image (bad){/color}\n{color=#fff}Drag to move.{/color}"
-    new "\n{color=#cfc}✔ 已預加載影像（良好） {/color}\n{color=#fcc}✘ 未預加載影像（糟糕） {/color}\n{color=#fff}通過拖拽來移動位置。{/color}"
+    new "\n{color=#cfc}✔ 已預加载影像（良好） {/color}\n{color=#fcc}✘ 未預加载影像（糟糕） {/color}\n{color=#fff}通過拖拽來移動位置。{/color}"
 
     # renpy/common/_developer/developer.rpym:616
     old "Click to open in editor."
@@ -1459,11 +1459,11 @@ translate None strings:
 
     # renpy/common/00console.rpy:850
     old "clear: clear the console history"
-    new "clear: 清除控制臺歷史記錄"
+    new "clear: 清除控制臺历史記錄"
 
     # renpy/common/00console.rpy:854
     old "exit: exit the console"
-    new "exit: 離開控制臺"
+    new "exit: 离开控制臺"
 
     # renpy/common/00console.rpy:862
     old "stack: print the return stack"
@@ -1513,4 +1513,4 @@ translate None strings:
     old "unescape: Disables escaping of unicode symbols in unicode strings and print it as is (default)."
     new "不轉義：禁用 unicode 字串中 unicode 符號的轉義並按原樣列印（預設）。"
 
-define gui.system_font = 'SourceHanSansLite.ttf'
+define gui.system_font = 'AlimamaDaoLiTi.ttf'

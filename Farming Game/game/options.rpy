@@ -6,7 +6,7 @@
 
 ## 基礎 ##########################################################################
 
-## 一個人類可讀的遊戲名稱。這用於設定預設視窗標題，並顯示在介面和錯誤報告中。
+## 一個人類可讀的遊戲名稱。這用於设定預設視窗標題，並顯示在介面和錯誤報告中。
 ##
 ## 字串周圍的 _() 標記其為符合翻譯條件。
 
@@ -18,9 +18,9 @@ define gui.about = _("Created by 陈刑.")
 
 define config.version = "1.0.0"
 
-## 儲存檔目錄 #######################################################################
+## 储存檔目錄 #######################################################################
 ##
-## 控制Ren'Py將放置該遊戲的儲存文檔的平台特定位置。儲存文檔將放置在：
+## 控制Ren'Py將放置該遊戲的储存文檔的平台特定位置。储存文檔將放置在：
 ##
 ## Windows: %APPDATA\RenPy\<config.save_directory>
 ##
@@ -38,7 +38,7 @@ define config.save_directory = "Saves"
 define gui.show_name = True
 
 
-## 放置在遊戲的關於螢幕上的文字。將文字放在三引號之間，並在段落之間留一個空行。
+## 放置在遊戲的关于螢幕上的文字。將文字放在三引號之間，並在段落之間留一個空行。
 
 define gui.about = _p("""
 """)
@@ -60,14 +60,14 @@ define config.has_music = True
 define config.has_voice = True
 
 
-## 要允許用戶在聲音或語音通道上播放測試聲音，請取消註釋下面的行並使用它來設定要
+## 要允許用戶在聲音或語音通道上播放測試聲音，請取消註釋下面的行並使用它來设定要
 ## 播放的範例聲音。
 
 # define config.sample_sound = "sample-sound.ogg"
 # define config.sample_voice = "sample-voice.ogg"
 
 
-## 取消註解以下行以設定玩家在主選單時播放的音訊檔案。該檔案將繼續在遊戲中播放，
+## 取消註解以下行以设定玩家在主選單時播放的音訊檔案。該檔案將繼續在遊戲中播放，
 ## 直到停止或播放另一個檔案。
 
 # define config.main_menu_music = "main-menu-theme.ogg"
@@ -75,7 +75,7 @@ define config.has_voice = True
 
 ## 過渡 ##########################################################################
 ##
-## 這些變數設定在發生某些事件時使用的過渡。每個變數都應設定為過渡，或 None 表示
+## 這些變數设定在發生某些事件時使用的過渡。每個變數都應设定為過渡，或 None 表示
 ## 不應使用任何過渡。
 
 ## 進入或退出遊戲選單。
@@ -99,7 +99,7 @@ define config.after_load_transition = None
 define config.end_game_transition = None
 
 
-## 用於設定遊戲開始時使用的過渡的變數不存在。相反，需要在顯示初始場景後使用 with
+## 用於设定遊戲开始時使用的過渡的變數不存在。相反，需要在顯示初始場景後使用 with
 ## 語句。
 
 
@@ -108,7 +108,7 @@ define config.end_game_transition = None
 ## 這控制何時顯示對話視窗。如果 "show" ，則始終顯示。如果 "hide" ，則僅在存在對
 ## 話時顯示。如果 "auto" ，則視窗在場景陳述之前隱藏，並在顯示對話後再次顯示。
 ##
-## 遊戲開始後，可以使用 "window show", "window hide", 和 "window auto" 語句更
+## 遊戲开始後，可以使用 "window show", "window hide", 和 "window auto" 語句更
 ## 改。
 
 define config.window = "auto"

@@ -1,72 +1,26 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "renpy/common/00action_other.rpy", line 586, in __call__
-    rv = self.callable(*self.args, **self.kwargs)
-  File "game/screens.rpy", line 401, in harvest
-    sell(ref)
-  File "game/screens.rpy", line 397, in sell
-    player.coins += calculatePrice(ref.object, count=1)
-  File "game/screens.rpy", line 394, in calculatePrice
-    return item.value * count
-AttributeError: 'Object' object has no attribute 'value'
+  File "game/screens.rpy", line 340, in script
+    init -999 python:
+  File "game/screens.rpy", line 386, in <module>
+    white_radish = Crop(objId="white_radish", name="白蘿蔔", value=100)
+TypeError: __init__() got an unexpected keyword argument 'objId'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
-    python hide:
+  File "game/screens.rpy", line 340, in script
+    init -999 python:
   File "D:\renpy\renpy-8.3.0-sdk\renpy\ast.py", line 821, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "D:\renpy\renpy-8.3.0-sdk\renpy\python.py", line 1178, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
-    python hide:
-  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
-    ui.interact()
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\ui.py", line 301, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\core.py", line 2188, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\core.py", line 3232, in interact_core
-    rv = root_widget.event(ev, x, y, 0)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\layout.py", line 1294, in event
-    rv = i.event(ev, x - xo, y - yo, cst)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\layout.py", line 1294, in event
-    rv = i.event(ev, x - xo, y - yo, cst)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\layout.py", line 1294, in event
-    rv = i.event(ev, x - xo, y - yo, cst)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\screen.py", line 793, in event
-    rv = self.child.event(ev, x, y, st)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\layout.py", line 1294, in event
-    rv = i.event(ev, x - xo, y - yo, cst)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\layout.py", line 1523, in event
-    rv = super(Window, self).event(ev, x, y, st)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\layout.py", line 288, in event
-    rv = d.event(ev, x - xo, y - yo, st)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\layout.py", line 1294, in event
-    rv = i.event(ev, x - xo, y - yo, cst)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\layout.py", line 1294, in event
-    rv = i.event(ev, x - xo, y - yo, cst)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\layout.py", line 1294, in event
-    rv = i.event(ev, x - xo, y - yo, cst)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\behavior.py", line 1180, in event
-    return handle_click(self.clicked)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\behavior.py", line 1101, in handle_click
-    rv = run(action)
-  File "D:\renpy\renpy-8.3.0-sdk\renpy\display\behavior.py", line 401, in run
-    return action(*args, **kwargs)
-  File "renpy/common/00action_other.rpy", line 586, in __call__
-    rv = self.callable(*self.args, **self.kwargs)
-  File "game/screens.rpy", line 401, in harvest
-    sell(ref)
-  File "game/screens.rpy", line 397, in sell
-    player.coins += calculatePrice(ref.object, count=1)
-  File "game/screens.rpy", line 394, in calculatePrice
-    return item.value * count
-AttributeError: 'Object' object has no attribute 'value'
+  File "game/screens.rpy", line 386, in <module>
+    white_radish = Crop(objId="white_radish", name="白蘿蔔", value=100)
+TypeError: __init__() got an unexpected keyword argument 'objId'
 
 Windows-10-10.0.22000 AMD64
 Ren'Py 8.3.0.24082114
 鬼谷三家村 1.0.0
-Sat Aug 31 22:00:30 2024
+Sun Sep  1 12:11:31 2024
